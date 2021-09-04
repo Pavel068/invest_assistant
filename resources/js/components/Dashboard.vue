@@ -3,9 +3,11 @@
         <div class="row">
             <div class="col-lg-6">
                 <p class="lead">Income Graph</p>
-                <p class="text-muted">No data found</p>
+<!--                <p class="text-muted">No data found</p>-->
+                <Bar></Bar>
                 <p class="lead">Forecast Graph</p>
-                <p class="text-muted">No data found</p>
+<!--                <p class="text-muted">No data found</p>-->
+                <Bar></Bar>
             </div>
             <div class="col-lg-6">
                 <p class="lead">My Actives Details</p>
@@ -42,8 +44,11 @@
 </template>
 
 <script>
+import Bar from "./charts/Bar";
+
 export default {
     name: 'Dashboard',
+    components: {Bar},
     mounted() {
         console.log('Component mounted.')
     }
