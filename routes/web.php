@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/my_actives', [App\Http\Controllers\MyActivesController::class, 'index'])->name('my_actives');
+
+Route::get('/analytics', [App\Http\Controllers\AnalyticsController::class, 'index'])->name('analytics');
+
+Route::get('/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
