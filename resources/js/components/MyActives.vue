@@ -1,13 +1,18 @@
 <template>
     <div class="content">
-        <div class="row">
-            <div class="col-lg-4">
+        <div class="row" v-if="actives">
+            <div class="col-lg-4" v-if="stocks">
                 <p class="lead">Stocks</p>
                 <table class="table table-striped">
                     <tr>
                         <th>ISIN</th>
                         <th>Current Price</th>
                         <th>Portfolio Price</th>
+                    </tr>
+                    <tr v-for="stock in stocks">
+                        <td>{{ stock.active.ISIN }}</td>
+                        <td>{{ stock.price }}</td>
+                        <td>{{ stock.price }}</td>
                     </tr>
                 </table>
             </div>
@@ -46,8 +51,29 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-    name: "MyActives"
+    name: "MyActives",
+    data() {
+        return {
+            actives: null
+        }
+    },
+    methods: {
+        async loadActives() {
+            const {data} = await axios.get('/api/actives/user/1');
+            this.actives = data;
+        }
+    },
+    computed: {
+        stocks() {
+            return this.actives.filter(item => item.active.type === 'stock');
+        }
+    },
+    async mounted() {
+        await this.loadActives();
+    }
 }
 </script>
 
